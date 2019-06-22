@@ -26,7 +26,7 @@ An easy way to install SEPIRA is by facilitating the devtools R package.
 ```{r eval=FALSE}
 #install.packages("devtools")
 library(devtools)
-install_github("WangNing0420/SCIRA", build_vignettes=TRUE)
+install_github("WangNing0420/SCIRA", build_opts = c("--no-resave-data", "--no-manual"))
 ```
 
 ## Getting started
