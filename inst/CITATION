@@ -1,0 +1,20 @@
+
+citHeader("")
+
+citEntry(
+  entry="article",  
+  author = c(
+             person("Yuting", "Chen"), 
+             person("Martin", "Widschwendter"),
+             person(c("Andrew", "E."), "Teschendorff")
+           ),
+  title="Systems-epigenomics inference of transcription factor activity implicates aryl-hydrocarbon-receptor inactivation as a key event in lung cancer development",
+  journal="Genome Biol",
+  volume=18,
+  number=1,
+  pages=236,
+  year=2017,
+  
+  textVersion="Chen Y, Widschwendter M, Teschendorff AE. 2017. Systems-epigenomics inference of transcription factor activity implicates aryl-hydrocarbon-receptor inactivation as a key event in lung cancer development. Genome Biol 18: 236."
+)
+
