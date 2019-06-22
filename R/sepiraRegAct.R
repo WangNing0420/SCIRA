@@ -1,4 +1,4 @@
-#' @title Infer TF activity from gene expression/ DNA methylation profile
+#' @title Infer TF activity from single cell gene expression profile
 #'
 #' @description \code{sciraRegAct} calculates TF activity scores in user input data set. It could be a single cell gene expression dataset.
 #'
