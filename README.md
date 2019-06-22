@@ -19,11 +19,18 @@ net.o <- sciraInfNet(data=data.m, tissue=colnames(data.m), toi = "Lung", cft = c
 
 #### Estimating transcription factor activity
 ```{r eval=FALSE}
-sciraRegAct(data = data.m, regnet = net.o$netTOI, norm = "z", ncores = 1)
+TFact <- sciraRegAct(data = data.m, regnet = net.o$netTOI, norm = "z", ncores = 1)
+```
+#### Installation
+An easy way to install SEPIRA is by facilitating the devtools R package.
+```{r eval=FALSE}
+#install.packages("devtools")
+library(devtools)
+install_github("WangNing0420/SCIRA", build_vignettes=TRUE)
 ```
 
 ## Getting started
-The SCIRA package contains a tutorial showing people how to implement SEPIRA in their work. The tutorial can be found in the package-vignette:
+The SCIRA package contains a tutorial showing people how to implement SCIRA in their work. The tutorial can be found in the package-vignette:
 
 library(SCIRA)
 vignette("SCIRA")
@@ -35,3 +42,5 @@ Thanks to my supervisor Andrew Teschendorff for reviewing and commenting on the 
 ## References
 
 Chen Y, Widschwendter M, and Teschendorff AE. 2017. “Systems-Epigenomics Inference of Transcription Factor Activity Implicates Aryl-Hydrocarbon-Receptor Inactivation as a Key Event in Lung Cancer Development.” Genome Biol 18:236.
+
+Wang, N., & Teschendorff, AE. 2019.  “Leveraging high-powered RNA-Seq datasets to improve inference of regulatory activity in single-cell RNA-Seq data.“ BioRxiv, 553040. 
