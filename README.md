@@ -22,7 +22,7 @@ net.o <- sciraInfNet(data=data.m, tissue=colnames(data.m), toi = "Lung", cft = c
 TFact <- sciraRegAct(data = data.m, regnet = net.o$netTOI, norm = "z", ncores = 1)
 ```
 #### Installation
-An easy way to install SEPIRA is by facilitating the devtools R package.
+An easy way to install SCIRA is by facilitating the devtools R package.
 ```{r eval=FALSE}
 #install.packages("devtools")
 library(devtools)
