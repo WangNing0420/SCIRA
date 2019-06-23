@@ -2,7 +2,7 @@
 #'
 #' @description \code{sciraInfNet()} is one of the two main functions in package \code{SCIRA}. Using it you can estimate tissue-specific regulatory networks in any tissue type of interest.
 #'
-#' @param data A matrix, the unnormalized gene expression data matrix, with rows referring to unique genes and columns to samples from different tissue types.
+#' @param data A matrix, the gene expression data matrix, with rows referring to unique genes and columns to samples from different tissue types.
 #' @param tissue A phenotype vector, indicating the tissue types of samples. It should have the same order as the columns of the matrix.
 #' @param toi A character, the tissue type of interest, a character telling the function the tissue type for which a user wants to estimate the network.
 #' @param cft A character or character vector containing the tissues which are deemed to be confounding. It can be blood and/or spleen, which we found using \code{ESTIMATE} package that they contain extremely high proportion of immune and stromal cells. If specified, must be one of the tissues in \code{tissve}

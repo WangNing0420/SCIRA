@@ -15,7 +15,7 @@ net.o <- sciraInfNet(data=data.m, tissue=colnames(data.m), toi = "Lung", cft = c
          TFs = TFeid, sdth = 0.25, sigth = 0.05, pcorth = 0.2, degth = c(0.05, 0.05),
          lfcth = c(log2(1.5), 0), minNtgts = 5, ncores = 1)
 ```
-** Note: `data.m` should be a unnormalized gene expression data set.
+** Note: `data.m` must be an intra-sample log-normalized bulk-tissue mRNA expression (RNA-Seq) dataset, like the dataset from GTEX. 
 
 #### Estimating transcription factor activity
 ```{r eval=FALSE}
@@ -33,11 +33,8 @@ install_github("WangNing0420/SCIRA", build_opts = c("--no-resave-data", "--no-ma
 The SCIRA package contains a tutorial showing people how to implement SCIRA in their work. The tutorial can be found in the package-vignette:
 
 library(SCIRA)
+
 vignette("SCIRA")
-
-## Acknowledgements
-
-Thanks to my supervisor Andrew Teschendorff for reviewing and commenting on the package and providing the code.
 
 ## References
 
