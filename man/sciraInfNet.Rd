@@ -9,7 +9,7 @@ sciraInfNet(data, tissue, toi, cft = NULL, TFs, sdth = 0.25,
   log2(1.5)), minNtgts = 10, ncores = 4)
 }
 \arguments{
-\item{data}{A matrix, the unnormalized gene expression data matrix, with rows referring to unique genes and columns to samples from different tissue types.}
+\item{data}{A matrix, the gene expression data matrix, with rows referring to unique genes and columns to samples from different tissue types.}
 
 \item{tissue}{A phenotype vector, indicating the tissue types of samples. It should have the same order as the columns of the matrix.}
 
