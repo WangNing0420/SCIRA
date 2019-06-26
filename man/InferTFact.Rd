@@ -26,5 +26,5 @@ regnet.m <- matrix(sample(c(-1, 0, 1), 500, replace = TRUE), nrow = 100)
 # gene expression vector (for one sample)
 exp.v <- rnorm(100)
 # TF activity score
-TFact.v <- scira:::InferTFact(exp.v, regnet.m)
+TFact.v <- SCIRA:::InferTFact(exp.v, regnet.m)
 }

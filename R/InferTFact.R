@@ -17,7 +17,7 @@
 #' # gene expression vector (for one sample)
 #' exp.v <- rnorm(100)
 #' # TF activity score
-#' TFact.v <- scira:::InferTFact(exp.v, regnet.m)
+#' TFact.v <- SCIRA:::InferTFact(exp.v, regnet.m)
 
 InferTFact <- function(exp, regnet) {
   act.v <- apply(regnet, 2, function(tmp.v) {
