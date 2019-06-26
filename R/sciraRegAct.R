@@ -27,7 +27,9 @@
 #'
 #' @examples
 #' # estimate TF activity
+#' # single cell RNA-seq dataset
 #' data("scLiver")
+#' # Lungnet
 #' data("netLiver")
 #' TFact <- sciraRegAct(scLiver,regnet=netLiver,norm="z",ncores=1)
 
