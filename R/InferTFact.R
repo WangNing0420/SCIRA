@@ -49,7 +49,7 @@ InferTFact <- function(exp, regnet) {
 #' # gene expression data matrix with 100 genes and 10 samples.
 #' tmp.m <- matrix(rnorm(1000), nrow = 100)
 #' # TF activity score
-#' TFact.v <- scira:::InferTFactPRL(1, tmp.m, regnet.m)
+#' TFact.v <- SCIRA:::InferTFactPRL(1, tmp.m, regnet.m)
 
 InferTFactPRL <- function(idx, tmp, regnet) {
   exp.v <- tmp[, idx]
