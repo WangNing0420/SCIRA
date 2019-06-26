@@ -32,9 +32,11 @@ install_github("WangNing0420/SCIRA", build_opts = c("--no-resave-data", "--no-ma
 ## Getting started
 The SCIRA package contains a tutorial showing people how to implement SCIRA in their work. The tutorial can be found in the package-vignette:
 
+```{r eval=FALSE}
 library(SCIRA)
 
 vignette("SCIRA")
+```
 
 ## References
 
