@@ -3,7 +3,7 @@ Type: Package
 Title: Single Cell Inference of Regulatory Activity
 Description: SCIRA (Single Cell Inference of Regulatory Activity) is such a hybrid approach which uses the inferred predicted targets (or "regulon") of a given transcription factor from bulk data to infer its regulatory activity in each single cell.
 Version: 0.99.0
-Date: 2019-07-26
+Date: 2019-06-22
 Author: Ning Wang [aut, cre],
   Andrew Teschendorff [aut]
 Maintainer: Ning Wang <wangning@picb.ac.cn>
