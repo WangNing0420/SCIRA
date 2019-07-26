@@ -79,7 +79,7 @@ data("GeneExp")
 data("TFeid")
 # run the function
 # The resulted network is small due to the limited size of the 'GeneExp' data set
-net.o <- sciraInfNet(GeneExp,colnames(GeneExp), toi="Lung", cft=c("Blood","Spleen"), TFs=TFeid, sdth=0.25, sigth=0.05, pcorth=0.2, degth=rep(0.03,2), lfcth=c(log2(1.5),0), minNtgts=3, ncores=1)
+net.o <- sciraInfNet(GeneExp,colnames(GeneExp), toi="Lung", cft=c("Blood","Spleen"), TFs=TFeid, sdth=0.25, capth= 0.01, sigth=0.05, pcorth=0.2, degth=rep(0.03,2), lfcth=c(log2(1.5),0), minNtgts=3, ncores=1)
 # degth = c(0.05, 0.05)' is recommended
 
 }
