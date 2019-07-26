@@ -23,8 +23,6 @@ sciraInfNet(data, tissue, toi, cft = NULL, TFs, sdth = 0.25,
 
 \item{sigth}{A numeric, the unadjusted p-value threshold used to call significant interactions after calculating the correlation coefficients between TFs and target genes. This threshold is used to binarize the correlation coefficient matrix. If this value is not specified by user, the function will do Bonferroni correction and then use 0.05 as the threshold.}
 
-\item{capth}{A numeric, the significant correlations threshold,in the range between 0 and 1, used to pick the most significant correlations. The default value is 0.01,  means pick the top 1% of associations.}
-
 \item{pcorth}{A numeric, the partial correlation threshold, in the range between 0 and 1, used to remove indirect interactions between TFs and their target genes.}
 
 \item{degth}{A vector of length two, thresholds of adjusted p-value to call significant TFs in 1) comparison between \code{toi} and all other tissue types; 2)  comparison between \code{toi} and blood/spleen in \code{cft}.}
