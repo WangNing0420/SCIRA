@@ -5,8 +5,8 @@
 \title{Infer tissue-specific regulatory network from gene expression data}
 \usage{
 sciraInfNet(data, tissue, toi, cft = NULL, TFs, sdth = 0.25,
-  sigth = NULL, pcorth = 0.2, degth = c(0.05, 0.05), lfcth = c(1,
-  log2(1.5)), minNtgts = 10, ncores = 4)
+  sigth = NULL, capth = 0.01, pcorth = 0.2, degth = c(0.05, 0.05),
+  lfcth = c(1, log2(1.5)), minNtgts = 10, ncores = 4)
 }
 \arguments{
 \item{data}{A matrix, the gene expression data matrix, with rows referring to unique genes and columns to samples from different tissue types.}
@@ -22,6 +22,8 @@ sciraInfNet(data, tissue, toi, cft = NULL, TFs, sdth = 0.25,
 \item{sdth}{A numeric, the standard deviation threshold used to remove genes with little or zero standard deviation of its expression levels.}
 
 \item{sigth}{A numeric, the unadjusted p-value threshold used to call significant interactions after calculating the correlation coefficients between TFs and target genes. This threshold is used to binarize the correlation coefficient matrix. If this value is not specified by user, the function will do Bonferroni correction and then use 0.05 as the threshold.}
+
+\item{capth}{A numeric, the significant correlations threshold,in the range between 0 and 1, used to pick the most significant correlations. The default value is 0.01,  means pick the top 1% of associations.}
 
 \item{pcorth}{A numeric, the partial correlation threshold, in the range between 0 and 1, used to remove indirect interactions between TFs and their target genes.}
 
@@ -59,7 +61,7 @@ Using differential gene expression analysis, we detect TFs that are highly activ
 \code{sdth} is a standard deviation threshold that is used to remove genes in user provided data set which are with small or close to zero standard deviation. By default the threshold is 0.25.
 
 From the gene expression data matrix \code{sciraInfNet} estimates Pearson correlation coefficient between every TF-gene pair as well as corresponding p-value. The p-value threshold \code{sigth} binarizes the network into "regulation" (1) /"no regulation" (0). This binarized network is used to determine the covariants when estimating the partial correlation between target genes and their regulators (TFs).
-
+\code{capth} is used to select the most significant correlations, the default value is 0.01, which means pick the top 1% of associations.
 \code{pcorth} is the partial correlation coefficient threshold for calling significant direct TF-gene interactions. By default \code{pcorth} equals 0.2.
 
 \code{degth} and \code{lfcth} are vectors each contains the 3 thresholds for adjusted p-value/log2 fold-change to call significant TFs in comparisons between \code{toi} and 1) all other tissue types; 2) the 1st tissue type (blood) in \code{cft}; 3) the 2nd tissue type (spleen or adipose tissue) in \code{cft}. These differential expression analyses are done to find tissue-specific TFs that are only highly activated in tissue type of interest.

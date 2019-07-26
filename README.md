@@ -12,7 +12,7 @@ Single Cell Inference of Regulatory Activity
 
 ```{r eval=FALSE}
 net.o <- sciraInfNet(data=data.m, tissue=colnames(data.m), toi = "Lung", cft = c("Blood","Spleen"),
-         TFs = TFeid, sdth = 0.25, sigth = 0.05, pcorth = 0.2, degth = c(0.05, 0.05),
+         TFs = TFeid, sdth = 0.25, sigth = 0.05, capth=0.01, pcorth = 0.2, degth = c(0.05, 0.05),
          lfcth = c(log2(1.5), 0), minNtgts = 5, ncores = 1)
 ```
 ** Note: `data.m` must be an intra-sample log-normalized bulk-tissue mRNA expression (RNA-Seq) dataset, like the dataset from GTEX. 

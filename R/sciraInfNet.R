@@ -9,6 +9,7 @@
 #' @param TFs A vector of TFs. Note that one should use the same annotation in different data sets throughout the analysis. e.g. a vector of human transcription factors. However, the regulators need not be transcription factors.
 #' @param sdth A numeric, the standard deviation threshold used to remove genes with little or zero standard deviation of its expression levels.
 #' @param sigth A numeric, the unadjusted p-value threshold used to call significant interactions after calculating the correlation coefficients between TFs and target genes. This threshold is used to binarize the correlation coefficient matrix. If this value is not specified by user, the function will do Bonferroni correction and then use 0.05 as the threshold.
+#' @param capth A numeric, the significant correlations threshold,in the range between 0 and 1, used to pick the most significant correlations. The default value is 0.01,  means pick the top 1% of associations.
 #' @param pcorth A numeric, the partial correlation threshold, in the range between 0 and 1, used to remove indirect interactions between TFs and their target genes.
 #' @param degth A vector of length two, thresholds of adjusted p-value to call significant TFs in 1) comparison between \code{toi} and all other tissue types; 2)  comparison between \code{toi} and blood/spleen in \code{cft}.
 #' @param lfcth A vector of length two, thresholds of log2(fold-change) to call significant TFs in 1) comparison between \code{toi} and all other tissue types; 2)  comparison between \code{toi} and blood/spleen in \code{cft}.
@@ -36,7 +37,7 @@
 #' \code{sdth} is a standard deviation threshold that is used to remove genes in user provided data set which are with small or close to zero standard deviation. By default the threshold is 0.25.
 #'
 #' From the gene expression data matrix \code{sciraInfNet} estimates Pearson correlation coefficient between every TF-gene pair as well as corresponding p-value. The p-value threshold \code{sigth} binarizes the network into "regulation" (1) /"no regulation" (0). This binarized network is used to determine the covariants when estimating the partial correlation between target genes and their regulators (TFs).
-#'
+#' \code{capth} is used to select the most significant correlations, the default value is 0.01, which means pick the top 1% of associations.
 #' \code{pcorth} is the partial correlation coefficient threshold for calling significant direct TF-gene interactions. By default \code{pcorth} equals 0.2.
 #'
 #' \code{degth} and \code{lfcth} are vectors each contains the 3 thresholds for adjusted p-value/log2 fold-change to call significant TFs in comparisons between \code{toi} and 1) all other tissue types; 2) the 1st tissue type (blood) in \code{cft}; 3) the 2nd tissue type (spleen or adipose tissue) in \code{cft}. These differential expression analyses are done to find tissue-specific TFs that are only highly activated in tissue type of interest.
@@ -61,7 +62,7 @@
 #' net.o <- sciraInfNet(GeneExp,colnames(GeneExp), toi="Lung", cft=c("Blood","Spleen"), TFs=TFeid, sdth=0.25, sigth=0.05, pcorth=0.2, degth=rep(0.03,2), lfcth=c(log2(1.5),0), minNtgts=3, ncores=1)
 #' # degth = c(0.05, 0.05)' is recommended
 #' 
-sciraInfNet <- function(data, tissue, toi, cft = NULL, TFs, sdth = 0.25, sigth = NULL, pcorth = 0.2, degth = c(0.05, 0.05), lfcth = c(1, log2(1.5)), minNtgts = 10, ncores = 4) {
+sciraInfNet <- function(data, tissue, toi, cft = NULL, TFs, sdth = 0.25, sigth = NULL, capth= 0.01, pcorth = 0.2, degth = c(0.05, 0.05), lfcth = c(1, log2(1.5)), minNtgts = 10, ncores = 4) {
 
   tt.v <- levels(factor(tissue))
   
@@ -94,8 +95,8 @@ sciraInfNet <- function(data, tissue, toi, cft = NULL, TFs, sdth = 0.25, sigth =
   binNET.m <- pvNET.m
   binNET.m[pvNET.m < sigth] <- 1
   binNET.m[pvNET.m >= sigth] <- 0
-  if(sum(binNET.m) > 0.01 * prod(dim(pvNET.m))){### if more than 1% cap at 1%
-    topE <- floor(0.01 * prod(dim(pvNET.m)))
+  if(sum(binNET.m) > capth * prod(dim(pvNET.m))){### if more than 1% cap at 1%
+    topE <- floor(capth * prod(dim(pvNET.m)))
 
     zNET.v <- as.vector(abs(zNET.m))
     tmp.s <- sort(zNET.v, decreasing = TRUE, index.return = TRUE)
