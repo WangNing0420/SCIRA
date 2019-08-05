@@ -17,4 +17,4 @@ RoxygenNote: 6.1.1
 Suggests: knitr, rmarkdown, testthat, igraph
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2019-08-05 05:45:45 UTC; WangNing
+Packaged: 2019-08-05 07:47:42 UTC; WangNing

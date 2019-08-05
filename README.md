@@ -1,10 +1,10 @@
 # SCIRA-package
 Single Cell Inference of Regulatory Activity
 
-`SCIRA` is such a hybrid approach which uses the inferred predicted targets (or "regulon") of a given transcription factor from bulk data to infer its regulatory activity in each single cell. It encompasses two main steps:
+`SCIRA` leverages the power of large-scale bulk RNA-Seq datasets to infer regulatory networks encoded by transcription factor regulon pairs, and subsequently uses these regulons to estimate regulatory activity of the transcription factors in single cells. It encompasses two main steps:
 
-1. Construction of a tissue-specific transcription factor regulatory network, consisting of transcription factors that are more highly expressed in the user-specified tissue type (the 'tissue type of interest') compared to other tissue types, plus an associated set of high-confidence downstream targets.
-2. Estimation of transcription factor activity in this network, in any given single cell of a scRNA-seq dataset.
+1. Construction of a tissue-specific transcription factor regulatory network, consisting of transcription factors that are more highly expressed in the user-specified tissue type (the 'tissue type of interest') compared to other tissue types, plus an associated set of high-confidence downstream targets (the "regulon").
+2. Estimation of transcription factor activity at single-cell resolution using a corresponding scRNA-seq dataset representative of the same tissue-type.
 
 
 ## Usage
@@ -15,7 +15,7 @@ net.o <- sciraInfNet(data=data.m, tissue=colnames(data.m), toi = "Lung", cft = c
          TFs = TFeid, sdth = 0.25, sigth = 0.05, capth=0.01, pcorth = 0.2, degth = c(0.05, 0.05),
          lfcth = c(log2(1.5), 0), minNtgts = 5, ncores = 1)
 ```
-** Note: `data.m` must be an intra-sample log-normalized bulk-tissue mRNA expression (RNA-Seq) dataset, like the dataset from GTEX. 
+** Note: `data.m` must be an intra-sample log-normalized bulk-tissue mRNA expression (RNA-Seq) dataset, for instance the dataset from GTEX.
 
 #### Estimating transcription factor activity
 ```{r eval=FALSE}

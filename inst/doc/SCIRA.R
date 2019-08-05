@@ -10,8 +10,8 @@ data("TFeid")
 net.o <- sciraInfNet(data=data.m, tissue=colnames(data.m), toi = "Lung", cft = c("Blood","Spleen"),
          TFs = TFeid, sdth = 0.25, sigth = 0.05, capth = 0.01, pcorth = 0.2, degth = c(0.05, 0.05),
          lfcth = c(log2(1.5), 0), minNtgts = 5, ncores = 1)
-## Note: `data.m` must be an intra-sample log-normalized bulk-tissue mRNA expression (RNA-Seq) dataset, like the dataset from GTEX.
-## Parameters used here are not recommended. See "?sciraInfNet" for more info.
+## Note: `data.m` must be an intra-sample log-normalized bulk-tissue mRNA expression (RNA-Seq) dataset, for instance the dataset from GTEX.
+## Parameters used here are only used for illustrative purposes, but may not be recommended. See "?sciraInfNet" for more info.
 
 ## ------------------------------------------------------------------------
 act <- sciraRegAct(data = data.m, regnet = net.o$netTOI, norm = "z", ncores = 1)

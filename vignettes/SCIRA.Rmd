@@ -16,10 +16,10 @@ vignette: >
 
 `SCIRA` (Single Cell Inference of Regulatory Activity) is a novel algorithm which can infer regulatory activity in the context of high dropout rate event single cell RNA-seq data. SCIRA is a hybrid approach which uses the inferred predicted targets of a given TF from bulk RNA-seq data to infer its regulatory activity in each single cell. It encompasses two main steps:
 
-1. Construction of a tissue-specific transcription factor regulatory network from bulk RNA-seq data, consisting of transcription factors that are more highly expressed in the user-specified tissue type (the 'tissue type of interest') compared to other tissue types, plus an associated set of high-confidence downstream targets[@Chen2017].
-2. Estimation of transcription factor activity in this network, in any given single cell RNA-seq dataset.
+1. Construction of a tissue-specific transcription factor regulatory network from bulk RNA-seq data, consisting of transcription factors that are more highly expressed in the user-specified tissue type (the 'tissue type of interest') compared to other tissue types, plus an associated set of high-confidence downstream targets (the "regulon")[@Chen2017]. 
+2. Estimation of transcription factor activity at single-cell resolution in any given single cell RNA-seq dataset representative of the same tissue-type. 
 
-To infer the network, we use the large [GTEx](https://www.gtexportal.org/home/) RNA-seq data set encompassing 8555 samples from about 30 tissue types. With this inferred network, we can then estimate transcription factor activity in samples from other single cell RNA-seq data sets. Due to the large size of the GTEx data set we did not include it in our package. However, in order to gain an appreciation for the SCIRA algorithm we show the results obtained by applying it to this full dataset. 
+To infer the regulatory network, we use the large [GTEx](https://www.gtexportal.org/home/) RNA-seq data set encompassing 8555 samples from about 30 tissue types. The regulatory network is encoded by TF-regulon pairs, and we use the inferred regulons to estimate transcription factor activity single cells using associated scRNA-seq data. Due to the large size of the GTEx data set we did not include it in our package. However, in order to gain an appreciation for the SCIRA algorithm we show the results obtained by applying it to this full dataset. 
 
 ### How to use
 ```{r echo=FALSE}
@@ -36,8 +36,8 @@ data("TFeid")
 net.o <- sciraInfNet(data=data.m, tissue=colnames(data.m), toi = "Lung", cft = c("Blood","Spleen"),
          TFs = TFeid, sdth = 0.25, sigth = 0.05, capth = 0.01, pcorth = 0.2, degth = c(0.05, 0.05),
          lfcth = c(log2(1.5), 0), minNtgts = 5, ncores = 1)
-## Note: `data.m` must be an intra-sample log-normalized bulk-tissue mRNA expression (RNA-Seq) dataset, like the dataset from GTEX.
-## Parameters used here are not recommended. See "?sciraInfNet" for more info.
+## Note: `data.m` must be an intra-sample log-normalized bulk-tissue mRNA expression (RNA-Seq) dataset, for instance the dataset from GTEX.
+## Parameters used here are only used for illustrative purposes, but may not be recommended. See "?sciraInfNet" for more info.
 ```
 
 
